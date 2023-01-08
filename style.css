@@ -1,16 +1,43 @@
-
+*{
+    font-family: 'Press Start 2P', cursive;
+}
+/* Individual Button Styling */
 button {
     height: 75px;
-    width: 75px; 
-}
-.calculator {
-margin: auto;
-background-color: maroon;
-height: 500px;
-width: 400px;
+    width: 75px;
+    font-size: large; 
+    border-radius: 10px;
+    background-color: #BBE1FA;
 }
 
-.button-all {
-    display: flex;
-    justify-content: center;
+/* Calculator Body */
+.calculator {
+height: 500px;
+width: 400px;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+gap: 10px;
+margin: auto;
+background-color: #0F4C75;
 }
+
+.calc-screen {
+    background-color: #3282B8;
+    width: 300px;
+    text-align: end;
+}
+/* Calculator Buttons */
+.button-all {
+    width: 300px;
+    display: flex;
+    flex-wrap: wrap;
+    
+}
+
+#zero{
+    flex: 2;
+}
+
+
