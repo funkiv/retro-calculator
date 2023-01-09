@@ -73,13 +73,13 @@ function buttonPress(calcButton) {
             num1 = -Math.abs(num1);
         }
         calcScreen.textContent = num1;
-    } else if (operator === "" && !isNaN(Number(calcButton))) {
+    } else if (operator === "" && !isNaN(Number(calcButton)) || operator === "" && calcButton === ".") {
         num1 += calcButton;
         calcScreen.textContent = num1;
-    } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=") {
+    } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=" && calcButton !== ".") {
         operator = calcButton;
         calcScreen.textContent = num1 + operator;
-    } else if(operator !== "" && !isNaN(Number(calcButton))) {
+    } else if(operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") {
         num2 += calcButton;
         calcScreen.textContent = num1 + operator + num2;
     }
