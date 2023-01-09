@@ -47,19 +47,39 @@ for(let item of calcButtons) {
 let num1 = "";
 let num2 = "";
 let operator = "";   
+let total = "";
 function buttonPress(calcButton) { 
     console.log(calcButton);
-    if(calcButton === "="){
-        console.log(operate(operator, num1, num2));
-    } 
-    
-    if (operator === "" && !isNaN(Number(calcButton))) {
+    if(calcButton === "=" && num1 !== "" && operator != "" && num2 !== ""){
+        total = operate(operator, num1, num2)
+        calcScreen.textContent = total;
+        num1 = total;
+        num2 = "";
+        operator = "";
+        total = "";
+    } else if (calcButton === "C"){
+        num1 = "";
+        num2 = "";
+        operator = "";
+        calcScreen.textContent = "0";
+    } else if (calcButton === "%"){
+        num1 = num1 / "100";
+        calcScreen.textContent = num1
+    } else if (calcButton === "+/-"){
+        //Toggles positive and negative
+        if (num1 < 0) {
+            num1 = Math.abs(num1);
+        } else {
+            num1 = -Math.abs(num1);
+        }
+        calcScreen.textContent = num1;
+    } else if (operator === "" && !isNaN(Number(calcButton))) {
         num1 += calcButton;
         calcScreen.textContent = num1;
-    } else if(num1 !== "" && isNaN(Number(calcButton))) {
+    } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=") {
         operator = calcButton;
         calcScreen.textContent = num1 + operator;
-    } else if(operator !== "") {
+    } else if(operator !== "" && !isNaN(Number(calcButton))) {
         num2 += calcButton;
         calcScreen.textContent = num1 + operator + num2;
     }
