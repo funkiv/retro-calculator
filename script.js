@@ -36,7 +36,7 @@ let calcScreen = document.getElementById("calc-input")
 let equation = "";
 
 //creates nodelist of number buttons
-let calcButtons = document.getElementsByClassName("calc-number");
+let calcButtons = document.querySelectorAll(".button-all > button");
 //Adds event listeners to each number button
 for(let item of calcButtons) {
     item.addEventListener("click", () => {
@@ -83,7 +83,6 @@ function buttonPress(calcButton) {
         num2 += calcButton;
         calcScreen.textContent = num1 + operator + num2;
     }
-
 }
 
 
