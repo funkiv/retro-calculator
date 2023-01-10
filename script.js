@@ -1,5 +1,5 @@
 
-
+//handles expression and returns resulting number
 function operate(operator, num1, num2) {
     num1 = Number(num1);
     num2 = Number(num2);
@@ -43,13 +43,15 @@ for(let item of calcButtons) {
         buttonPress(item.innerText);
     });
 }
-
+//expression variables
 let num1 = "";
 let num2 = "";
 let operator = "";   
 let total = "";
+//Function called from event listener when any calc button is pressed
 function buttonPress(calcButton) { 
     console.log(calcButton);
+    //=
     if(calcButton === "=" && num1 !== "" && operator != "" && num2 !== ""){
         total = operate(operator, num1, num2)
         calcScreen.textContent = total;
@@ -57,14 +59,17 @@ function buttonPress(calcButton) {
         num2 = "";
         operator = "";
         total = "";
+    //C
     } else if (calcButton === "C"){
         num1 = "";
         num2 = "";
         operator = "";
         calcScreen.textContent = "0";
+    //%
     } else if (calcButton === "%"){
         num1 = num1 / "100";
         calcScreen.textContent = num1
+    //+/-
     } else if (calcButton === "+/-"){
         //Toggles positive and negative
         if (num1 < 0) {
@@ -73,12 +78,15 @@ function buttonPress(calcButton) {
             num1 = -Math.abs(num1);
         }
         calcScreen.textContent = num1;
+    //num1
     } else if (operator === "" && !isNaN(Number(calcButton)) || operator === "" && calcButton === ".") {
         num1 += calcButton;
         calcScreen.textContent = num1;
+    //operator
     } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=" && calcButton !== ".") {
         operator = calcButton;
         calcScreen.textContent = num1 + operator;
+    //num2
     } else if(operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") {
         num2 += calcButton;
         calcScreen.textContent = num1 + operator + num2;

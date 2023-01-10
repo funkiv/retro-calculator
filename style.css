@@ -12,6 +12,7 @@ header {
     padding: 20px;
     background-color: #E1D7C6;
 }
+/* Div holding calculator */
 .hero-content {
     background-color: #ECE8DD;
     flex-grow: 1;
@@ -40,7 +41,7 @@ border: #8a8c94;
 border-style:solid;
 border-radius: 5px;
 }
-
+/* Calculator upper screen */
 .calc-screen {
     background-color: #89aac0;
     color: #46484e;
@@ -73,6 +74,12 @@ background-color: #aedaf7;
     background-color: #89aac0;    
 }
 
+#zero{
+    flex: 2;
+}
+
+/* Operator buttons */
+
 button.operator {
     background-color: #8a8c94;
 }
@@ -81,10 +88,6 @@ button.operator:hover {
 }
 button.operator:active {
     background-color: #717379;    
-}
-
-#zero{
-    flex: 2;
 }
 
 
