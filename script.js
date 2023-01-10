@@ -50,47 +50,54 @@ let operator = "";
 let total = "";
 //Function called from event listener when any calc button is pressed
 function buttonPress(calcButton) { 
-    console.log(calcButton);
-    //=
-    if(calcButton === "=" && num1 !== "" && operator != "" && num2 !== ""){
-        total = operate(operator, num1, num2)
-        calcScreen.textContent = total;
-        num1 = total;
-        num2 = "";
-        operator = "";
-        total = "";
-    //C
-    } else if (calcButton === "C"){
-        num1 = "";
-        num2 = "";
-        operator = "";
-        calcScreen.textContent = "0";
-    //%
-    } else if (calcButton === "%"){
-        num1 = num1 / "100";
-        calcScreen.textContent = num1
-    //+/-
-    } else if (calcButton === "+/-"){
-        //Toggles positive and negative
-        if (num1 < 0) {
-            num1 = Math.abs(num1);
-        } else {
-            num1 = -Math.abs(num1);
+    if (calcScreen.textContent.length < 12) {  
+        //=
+        if((calcButton === "="||calcButton === "+"||calcButton === "-"||calcButton === "*"||calcButton === "/") && num1 !== "" && operator != "" && num2 !== ""){
+            total = operate(operator, num1, num2)
+            calcScreen.textContent = total;
+            num1 = total;
+            num2 = "";
+            if (calcButton !== "="){
+            operator = calcButton;
+            calcScreen.textContent += calcButton;
+            } else {
+                operator = "";
+            }
+            total = "";
+        //C
+        } else if (calcButton === "C"){
+            num1 = "";
+            num2 = "";
+            operator = "";
+            calcScreen.textContent = "0";
+        //%
+        } else if (calcButton === "%"){
+            num1 = num1 / "100";
+            calcScreen.textContent = num1
+        //+/-
+        } else if (calcButton === "+/-"){
+            //Toggles positive and negative
+            if (num1 < 0) {
+                num1 = Math.abs(num1);
+            } else {
+                num1 = -Math.abs(num1);
+            }
+            calcScreen.textContent = num1;
+        //num1
+        } else if (operator === "" && !isNaN(Number(calcButton)) || operator === "" && calcButton === ".") {
+            num1 += calcButton;
+            calcScreen.textContent = num1;
+        //operator
+        } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=" && calcButton !== ".") {
+            operator = calcButton;
+            calcScreen.textContent = num1 + operator;
+        //num2
+        } else if(operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") {
+            num2 += calcButton;
+            calcScreen.textContent = num1 + operator + num2;
         }
-        calcScreen.textContent = num1;
-    //num1
-    } else if (operator === "" && !isNaN(Number(calcButton)) || operator === "" && calcButton === ".") {
-        num1 += calcButton;
-        calcScreen.textContent = num1;
-    //operator
-    } else if(num1 !== "" && isNaN(Number(calcButton)) && calcButton !== "=" && calcButton !== ".") {
-        operator = calcButton;
-        calcScreen.textContent = num1 + operator;
-    //num2
-    } else if(operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") {
-        num2 += calcButton;
-        calcScreen.textContent = num1 + operator + num2;
-    }
+
+    }    
 }
 
 
