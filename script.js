@@ -50,7 +50,7 @@ let operator = "";
 let total = "";
 //Function called from event listener when any calc button is pressed
 function buttonPress(calcButton) { 
-    if (calcScreen.textContent.length < 12) {  
+    let isCountBelow = calcScreen.textContent.length < 12;  
         //=
         if((calcButton === "="||calcButton === "+"||calcButton === "-"||calcButton === "*"||calcButton === "/") && num1 !== "" && operator != "" && num2 !== ""){
             total = operate(operator, num1, num2)
@@ -84,7 +84,7 @@ function buttonPress(calcButton) {
             }
             calcScreen.textContent = num1;
         //num1
-        } else if (operator === "" && !isNaN(Number(calcButton)) || operator === "" && calcButton === ".") {
+        } else if (((!isNaN(Number(calcButton)) ||calcButton === ".") && operator === "") && isCountBelow) {
             num1 += calcButton;
             calcScreen.textContent = num1;
         //operator
@@ -92,12 +92,10 @@ function buttonPress(calcButton) {
             operator = calcButton;
             calcScreen.textContent = num1 + operator;
         //num2
-        } else if(operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") {
+        } else if((operator !== "" && !isNaN(Number(calcButton)) || calcButton === ".") && isCountBelow) {
             num2 += calcButton;
             calcScreen.textContent = num1 + operator + num2;
-        }
-
-    }    
+        }      
 }
 
 
